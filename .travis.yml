@@ -17,7 +17,7 @@ script:
   - go test -json > report.json
   - go test -coverprofile=coverage.out
   # And then execute SonarCloud analysis which will run its own code analysis, and also reuse the linters' results
-  - sonar-scanner/bin/sonar-scanner  -D"sonar.projectKey=test2" -D"sonar.sources=." -D"sonar.host.url=http://sonarqube.acoba.com" -D"sonar.login=2f04f63cdec5697dd923559c6272cb1f56cde39b"
+  - sonar-scanner/bin/sonar-scanner sonar-scanner -X -Dsonar.projectKey=SONAR_PROJECT -Dsonar.sources=. -Dsonar.host.url=SONAR_URL -Dsonar.login=SONAR_LOGIN
 
 cache:
   directories:
