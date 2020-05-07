@@ -8,7 +8,7 @@ install:
   - go get -u gopkg.in/alecthomas/gometalinter.v2
   - $GOPATH/bin/gometalinter.v2 --install
   - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.2.0.1873-linux.zip
-  - unzip sonar-scanner-cli-4.2.0.1873-linux.zip && mv sonar-scanner-cli-4.2.0.1873-linux sonar-scanner
+  - unzip sonar-scanner-cli-4.2.0.1873-linux.zip -d /sonar-scanner
 
 script:
   # Execute Go Meta Linter
@@ -17,7 +17,7 @@ script:
   - go test -json > report.json
   - go test -coverprofile=coverage.out
   # And then execute SonarCloud analysis which will run its own code analysis, and also reuse the linters' results
-  - sonar-scanner/bin/sonar-scanner -Dsonar.projectKey=$SONAR_PROJECT -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_LOGIN
+  - /sonar-scanner/bin/sonar-scanner -Dsonar.projectKey=$SONAR_PROJECT -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_LOGIN
 
 cache:
   directories:
